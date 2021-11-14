@@ -11,10 +11,10 @@ function App() {
   const [ output, setOutput ] = useState("")
   const handleSubmit = e => {
     e.preventDefault()
-    axios.post("http://localhost:3001/api/links", { maxUses:uses, tracking,url }, { withCredentials: true })
+    axios.post("/api/links", { maxUses:uses, tracking,url }, { withCredentials: true })
     .then( data => {
       console.log(data);
-      setOutput( `http://localhost:3001/${data.data.url}` )
+      setOutput( `http://localhost/${data.data.url}` )
     } )
   }
   const hsetTracking = e => {

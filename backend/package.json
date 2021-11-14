@@ -11,13 +11,17 @@
     "fastify": "^3.23.1",
     "fastify-cookie": "^5.3.2",
     "fastify-cors": "^6.0.2",
+    "fastify-static": "^4.5.0",
     "mongoose": "^6.0.12",
+    "nodemon": "^2.0.15",
     "typescript": "^4.4.4"
   },
   "scripts": {
-    "dev": "nodemon ./index.ts"
+    "dev": "nodemon ./src/index.ts",
+    "start": "set NODE_PATH=./build&& node build/index.js",
+    "build": "tsc -p tsconfig.build.json"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "@kevinpollet/tsconfig": "^0.1.0"
   }
 }

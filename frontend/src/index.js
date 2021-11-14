@@ -4,10 +4,10 @@ import './index.css';
 import App from './App.jsx';
 import axios from "axios"
 
-axios.get("http://localhost:3001/api/register", { withCredentials: true })
+axios.get("/api/register", { withCredentials: true })
 .then( res=> {
   if( !res.data ){
-    axios.post("http://localhost:3001/api/register", {}, { withCredentials: true })
+    axios.post("/api/register", {}, { withCredentials: true })
     .then( data => {
       console.log("Successfully Registered");
       console.log(data);

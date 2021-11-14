@@ -1,0 +1,13 @@
+{
+    "moduleResolution" : "node",
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "module" : "CommonJS",
+        "moduleResolution" : "node",
+        "declaration": false,
+        "lib" : ["es2021"],
+        "outDir": "lib",
+        "target": "ES2021"
+    },
+    "include": ["src", "static", "static", "static"],
+}

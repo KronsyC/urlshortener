@@ -1,10 +1,12 @@
 import fastify from "fastify";
-import mongoose, { mongo } from "mongoose"
-import dotenv from "dotenv"
+import mongoose from "mongoose"
+import * as dotenv from "dotenv"
 import cookie, { FastifyCookieOptions } from "fastify-cookie"
 import Link from "./models/link"
 import cors from "fastify-cors"
-
+import fstatic from "fastify-static"
+import path from "path"
+import fs from "fs"
 
 const urlRegex = new RegExp("(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})")
 
@@ -12,6 +14,15 @@ dotenv.config()
 const app = fastify()
 app.register(cookie, {} as FastifyCookieOptions)
 app.register(cors, { origin:["http://localhost:3000", "http://localhost:3001"], credentials:true, exposedHeaders:["set-cookie", "cookie"] })
+
+
+app.register(fstatic, {
+    root: path.join(__dirname, "..", "build"),
+    prefix: "/"
+})
+
+
+
 function makeid(length : number) {
     var result           = '';
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -23,6 +34,10 @@ function makeid(length : number) {
    return result;
 }
 
+
+app.get("/", async(req, res) => {
+    return res.sendFile("index.html")
+})
 app.get("/:link",async (req, res) => {
     // Redirect users
     const { link } = Object(req.params)
@@ -62,6 +77,8 @@ app.get("/api/register", async (req, res) => {
 
 })
 app.post("/api/links", async (req, res) => {
+    console.log("Links");
+    
     const { maxUses=-1, tracking=false, url="" } : { maxUses:number, tracking:boolean, url:string } = Object(req.body)
     const owner=req.cookies.id || ""
     console.log(owner);
@@ -131,8 +148,8 @@ app.post("/api/links", async (req, res) => {
 const start = async () => {
 
     try{
-        app.listen(3001)
-        console.log("Server listening on port 3000");
+        app.listen(8080, "0.0.0.0")
+        console.log("Server listening on port 8080");
         mongoose.connect(process.env.MONGOURL || "")
         .then( data => {
             console.log("Successfully connected to mongodb");
@@ -140,11 +157,14 @@ const start = async () => {
         } )
         .catch( err => {
             console.log("Database Error");
+            console.log(err);         
             process.exit(1)
         })
     }
-    catch{
+    catch(err){
         console.log("Unexpected Error");
+        console.log(err);
+        
     }
 }
 
