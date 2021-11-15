@@ -21,6 +21,7 @@ ReactDOM.render(
       <title>Teenie - Url Shortener</title>
       <meta property="og:title" content="Teenie - Url Shortener" />
       <meta property="og:description" content="A Url Shortener by KronsyC" />
+      <meta property="description" content="A Url Shortener by KronsyC" />
       <meta property="og:url" content="https://teenie.herokuapp.com" />
       <meta property="og:image" content="/adachi.jpg" />
     </Helmet>
