@@ -1,10 +1,9 @@
 import "./option.css"
 
-const Option = ({title = "TITLE", type="text", onChange, desc=""}) => {
+const Option = ({title = "TITLE", type="text", onChange}) => {
     return (
         <div className="option">
             <h5 className="oTitle">{title}</h5>
-            <p className="description">{desc}</p>
             {
                 type==="text" ?
                 <input type="text" className="textInput" onChange={ onChange } /> :

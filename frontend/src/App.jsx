@@ -46,8 +46,8 @@ function App() {
           }
           {
             showOptions && <div className="options">
-              <Option title="Limit" type="number" onChange={hsetUses} desc="Amount of users redirected" />
-              <Option title="tracking" type="toggle" onChange={hsetTracking} desc="Should people be logged" />
+              <Option title="Limit" type="number" onChange={hsetUses} />
+              <Option title="tracking" type="toggle" onChange={hsetTracking} />
 
             </div>
           }         
