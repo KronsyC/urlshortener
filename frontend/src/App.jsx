@@ -14,7 +14,7 @@ function App() {
     axios.post("/api/links", { maxUses:uses, tracking,url }, { withCredentials: true })
     .then( data => {
       console.log(data);
-      setOutput( `http://localhost/${data.data.url}` )
+      setOutput( `https://teenie.herokuapp.com/${data.data.url}` )
     } )
   }
   const hsetTracking = e => {
