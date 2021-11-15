@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000
 dotenv.config()
 const app = fastify()
 app.register(cookie, {} as FastifyCookieOptions)
-app.register(cors, { origin:["http://localhost:3000", "http://localhost:3001"], credentials:true, exposedHeaders:["set-cookie", "cookie"] })
+app.register(cors, { origin:["http://localhost:3000", "https://teenie.herokuapp.com/"], credentials:true, exposedHeaders:["set-cookie", "cookie"] })
 
 
 app.register(fstatic, {
