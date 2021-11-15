@@ -19,7 +19,8 @@ USER node
 COPY package.json ./
 COPY yarn.lock    ./
 COPY .env ./
-COPY build ./build
+COPY .env.production ./
+COPY static ./static
 
 RUN yarn install
 

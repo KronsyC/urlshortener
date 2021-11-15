@@ -28,7 +28,7 @@ function App() {
     <div className="app">
       <h1 className="title">URL Shortener</h1>
       {
-        output != "" && 
+        output !== "" && 
         <div className="outputContainer">
           <h3 className="outputTitle">New Link, click to copy</h3>
           <h4 onClick={() => {navigator.clipboard.writeText(output)}} className="output">{output}</h4>
