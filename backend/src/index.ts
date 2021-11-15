@@ -37,6 +37,9 @@ function makeid(length : number) {
 app.get("/", async(req, res) => {
     return res.sendFile("index.html")
 })
+app.get("/adachi.jpg", async(req, res) => {
+    return res.sendFile("adachi.jpg")
+})
 app.get("/:link",async (req, res) => {
     // Redirect users
     const { link } = Object(req.params)
