@@ -1,4 +1,4 @@
-import fastify from "fastify";
+import fastify from "fastify"
 import mongoose from "mongoose"
 import * as dotenv from "dotenv"
 import cookie, { FastifyCookieOptions } from "fastify-cookie"
