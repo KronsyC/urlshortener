@@ -8,8 +8,8 @@ import fstatic from "fastify-static"
 import path from "path"
 
 const urlRegex = new RegExp("(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})")
-
-dotenv.config({ path: `${ process.env.NODE_ENV === "production" ? path.join(__dirname, "..", ".env.production") : path.join(__dirname, "..", ".env") }` })
+const PORT = process.env.PORT || 3000
+dotenv.config()
 const app = fastify()
 app.register(cookie, {} as FastifyCookieOptions)
 app.register(cors, { origin:["http://localhost:3000", "http://localhost:3001"], credentials:true, exposedHeaders:["set-cookie", "cookie"] })
@@ -147,8 +147,8 @@ app.post("/api/links", async (req, res) => {
 const start = async () => {
 
     try{
-        app.listen(8080, "0.0.0.0")
-        console.log("Server listening on port 8080");
+        app.listen(PORT, "0.0.0.0")
+        console.log(`Server listening on port ${PORT}`);
         mongoose.connect(process.env.MONGOURL || "")
         .then( data => {
             console.log("Successfully connected to mongodb");
