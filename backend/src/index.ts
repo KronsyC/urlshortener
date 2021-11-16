@@ -115,7 +115,7 @@ app.post("/api/links", async (req, res) => {
         // The domain is valid with no http or https
         url= `https://${url}`
     }
-    else if( dom.match(urlRegex) ){
+    else if( urlRegex.test(dom) ){
         // completely valid domain, skip
     }
     else{
