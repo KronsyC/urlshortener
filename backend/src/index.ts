@@ -9,7 +9,7 @@ import path from "path"
 
 
 const domRegex = new RegExp("^((?!-))(xn--)?[a-z0-9][a-z0-9-_]{0,61}[a-z0-9]{0,1}\.(xn--)?([a-z0-9\-]{1,61}|[a-z0-9-]{1,30}\.[a-z]{2,})$")
-const urlRegex = new RegExp("https?:\/\/(www\.)?(xn--)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)")
+const urlRegex = new RegExp("(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})")
 
 
 const PORT = process.env.PORT || 3000
@@ -115,7 +115,7 @@ app.post("/api/links", async (req, res) => {
         // The domain is valid with no http or https
         url= `https://${url}`
     }
-    else if( urlRegex.test(dom) ){
+    else if( dom.match(urlRegex) ){
         // completely valid domain, skip
     }
     else{
@@ -162,7 +162,8 @@ app.post("/api/links", async (req, res) => {
 })
 
 const start = async () => {
-
+    
+    
     try{
         app.listen(PORT, "0.0.0.0")
         console.log(`Server listening on port ${PORT}`);
