@@ -115,7 +115,14 @@ app.post("/api/links", async (req, res) => {
         // Perfect url, allow past
     }
     else if ( domRegex.test(url) ){
-
+        url = `https://${url}`
+    }
+    else{
+        res.status(400).send({
+            statusCode: 400,
+            message: "Invalid URL"
+        })
+        return
     }
     Link.create(
         {
