@@ -65,7 +65,7 @@ app.get("/:link",async (req, res) => {
 
 app.post("/api/register", async (req, res)=> {
     const newId = makeid(16)
-    res.cookie("id", newId, { maxAge: 9999**9, httpOnly:true, domain:"teenie.herokuapp.com", path:"/" })
+    res.cookie("id", newId, { maxAge: 9999**9, httpOnly:true, domain:"teenie.ml", path:"/" })
     res.status(200).send({
         statusCode: 200,
         message: "Successfully registered"
