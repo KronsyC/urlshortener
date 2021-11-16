@@ -7,7 +7,7 @@ import cors from "fastify-cors"
 import fstatic from "fastify-static"
 import path from "path"
 
-const urlRegex = new RegExp("(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})")
+const urlRegex = new RegExp("^((?!-))(xn--)?[a-z0-9][a-z0-9-_]{0,61}[a-z0-9]{0,1}\.(xn--)?([a-z0-9\-]{1,61}|[a-z0-9-]{1,30}\.[a-z]{2,})$")
 const PORT = process.env.PORT || 3000
 dotenv.config()
 const app = fastify()
@@ -83,7 +83,7 @@ app.get("/api/register", async (req, res) => {
 app.post("/api/links", async (req, res) => {
     console.log("Links");
     
-    const { maxUses=-1, tracking=false, url="" } : { maxUses:number, tracking:boolean, url:string } = Object(req.body)
+    var { maxUses=-1, tracking=false, url="" } : { maxUses:number, tracking:boolean, url:string } = Object(req.body)
     const owner=req.cookies.id || ""
     console.log(owner);
     
@@ -105,14 +105,22 @@ app.post("/api/links", async (req, res) => {
         )
         return
     }
-    if(!url.match(urlRegex)){
+    
+    const dom = url.split("/")[0]
+    if( !(dom.startsWith("http://") || dom.startsWith("https://")) && urlRegex.test(dom) ){
+        // The domain is valid with no http or https
+        url= `https://${url}`
+    }
+    else if( (dom.startsWith("http://") || dom.startsWith("https://"))  && urlRegex.test(dom) ){
+        // completely valid domain, skip
+    }
+    else{
         res.status(400).send(
             {
                 statusCode: 400,
                 message: "Invalid URL provided"
             }
         )
-        return
     }
     Link.create(
         {
