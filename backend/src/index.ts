@@ -42,6 +42,8 @@ app.get("/adachi.jpg", async(req, res) => {
 })
 app.get("/:link",async (req, res) => {
     // Redirect users
+    console.log(req.headers);
+    
     const { link } = Object(req.params)
     Link.findOne({ url:link })
     .then( data => {
