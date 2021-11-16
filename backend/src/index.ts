@@ -7,7 +7,11 @@ import cors from "fastify-cors"
 import fstatic from "fastify-static"
 import path from "path"
 
-const urlRegex = new RegExp("^((?!-))(xn--)?[a-z0-9][a-z0-9-_]{0,61}[a-z0-9]{0,1}\.(xn--)?([a-z0-9\-]{1,61}|[a-z0-9-]{1,30}\.[a-z]{2,})$")
+
+const domRegex = new RegExp("^((?!-))(xn--)?[a-z0-9][a-z0-9-_]{0,61}[a-z0-9]{0,1}\.(xn--)?([a-z0-9\-]{1,61}|[a-z0-9-]{1,30}\.[a-z]{2,})$")
+const urlRegex = new RegExp("https?:\/\/(www\.)?(xn--)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)")
+
+
 const PORT = process.env.PORT || 3000
 dotenv.config()
 const app = fastify()
@@ -107,11 +111,11 @@ app.post("/api/links", async (req, res) => {
     }
     
     const dom = url.split("/")[0]
-    if( !(dom.startsWith("http://") || dom.startsWith("https://")) && urlRegex.test(dom) ){
+    if( !(dom.startsWith("http://") || dom.startsWith("https://")) && domRegex.test(dom) ){
         // The domain is valid with no http or https
         url= `https://${url}`
     }
-    else if( (dom.startsWith("http://") || dom.startsWith("https://"))  && urlRegex.test(dom) ){
+    else if( urlRegex.test(dom) ){
         // completely valid domain, skip
     }
     else{
