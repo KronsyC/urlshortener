@@ -19,7 +19,7 @@ body{
 }
 .app{
   height: 80%;
-  width: clamp(600px, 80vw, 700px);
+  width: clamp(600px, 700px, 90vw);
   box-shadow: 0 0 0 2px black;
   display: flex;
   flex-direction: column;
@@ -27,6 +27,7 @@ body{
   justify-content: space-between;
   gap: 48px;
   padding: 128px 32px;
+  max-width: 90vw;
 }
 
 .title{
@@ -35,7 +36,7 @@ body{
   font-size: 2rem;
 }
 .form{
-  width: 60%;
+  width: clamp(220px, 60%, 600px);
   display: flex;
   flex-direction: column;
   align-items: center;

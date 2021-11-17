@@ -1,4 +1,4 @@
-import './App.css';
+
 import { useState } from "react"
 import Option from "./components/Option"
 import axios from "axios"
