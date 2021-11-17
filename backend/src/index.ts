@@ -158,26 +158,25 @@ app.post("/api/links", async (req, res) => {
 
 const start = async () => {
     
-    console.log(urlRegex.test("https://example"))
-    // try{
-    //     app.listen(PORT, "0.0.0.0")
-    //     console.log(`Server listening on port ${PORT}`);
-    //     mongoose.connect(process.env.MONGOURL || "")
-    //     .then( data => {
-    //         console.log("Successfully connected to mongodb");
+    try{
+        app.listen(PORT, "0.0.0.0")
+        console.log(`Server listening on port ${PORT}`);
+        mongoose.connect(process.env.MONGOURL || "")
+        .then( data => {
+            console.log("Successfully connected to mongodb");
             
-    //     } )
-    //     .catch( err => {
-    //         console.log("Database Error");
-    //         console.log(err);         
-    //         process.exit(1)
-    //     })
-    // }
-    // catch(err){
-    //     console.log("Unexpected Error");
-    //     console.log(err);
+        } )
+        .catch( err => {
+            console.log("Database Error");
+            console.log(err);         
+            process.exit(1)
+        })
+    }
+    catch(err){
+        console.log("Unexpected Error");
+        console.log(err);
         
-    // }
+    }
 }
 
 start()
