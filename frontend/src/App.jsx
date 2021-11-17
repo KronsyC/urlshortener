@@ -8,7 +8,7 @@ function App() {
   const [ showOptions, setShowOptions ] = useState(false)
   const [ uses, setUses ] = useState(-1)
   const [ tracking, setTracking ] = useState(false)
-  const [ output, setOutput ] = useState("https://teenie.ml/abc")
+  const [ output, setOutput ] = useState("")
   const handleSubmit = e => {
     e.preventDefault()
     axios.post("/api/links", { maxUses:uses, tracking,url }, { withCredentials: true })
