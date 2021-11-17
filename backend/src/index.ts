@@ -41,7 +41,7 @@ function makeid(length : number) {
 app.get("/", async(req, res) => {
     return res.sendFile("index.html")
 })
-app.get("/:file(([^\\s]+(\\.(?i)(jpg|png))$))", async(req, res) => {
+app.get("/static/:file", async(req, res) => {
     return res.sendFile(Object(req.params).file)
 })
 app.get("/:link",async (req, res) => {
@@ -85,11 +85,9 @@ app.get("/api/register", async (req, res) => {
 
 })
 app.post("/api/links", async (req, res) => {
-    console.log("Links");
     
     var { maxUses=-1, tracking=false, url="" } : { maxUses:number, tracking:boolean, url:string } = Object(req.body)
     const owner=req.cookies.id || ""
-    console.log(owner);
     
     if(owner === ""){
         res.status(400).send(
@@ -134,7 +132,6 @@ app.post("/api/links", async (req, res) => {
         }
     )
     .then( data => {
-        console.log(data);
         
         res.status(201).send(
             {
@@ -162,7 +159,8 @@ app.post("/api/links", async (req, res) => {
 const start = async () => {
     
     try{
-        app.listen(PORT, "0.0.0.0")
+       
+        await app.listen(PORT, "0.0.0.0")
         console.log(`Server listening on port ${PORT}`);
         mongoose.connect(process.env.MONGOURL || "")
         .then( data => {
