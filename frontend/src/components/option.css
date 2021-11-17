@@ -1,5 +1,5 @@
 .option{
-    background-color: rgb(85, 188, 214);
+    background-color: rgb(72, 110, 192);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -13,6 +13,7 @@
     font-size: 1.2rem;
     font-weight: 500;
     text-transform: capitalize;
+    color: ivory;
 }
 
 .textInput{
@@ -73,8 +74,3 @@ input:checked + .slider {
     transform: translateX(26px);
 }
 
-.description{
-    font-size: 0.9rem;
-    font-weight: 400;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}

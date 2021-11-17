@@ -8,7 +8,7 @@ function App() {
   const [ showOptions, setShowOptions ] = useState(false)
   const [ uses, setUses ] = useState(-1)
   const [ tracking, setTracking ] = useState(false)
-  const [ output, setOutput ] = useState("")
+  const [ output, setOutput ] = useState("https://teenie.ml/abc")
   const handleSubmit = e => {
     e.preventDefault()
     axios.post("/api/links", { maxUses:uses, tracking,url }, { withCredentials: true })
@@ -26,11 +26,11 @@ function App() {
 
   return (
     <div className="app">
-      <h1 className="title">URL Shortener</h1>
+      <h1 className="title">Teenie</h1>
       {
         output !== "" && 
         <div className="outputContainer">
-          <h3 className="outputTitle">New Link, click to copy</h3>
+          <h3 className="outputTitle">Click to Copy</h3>
           <h4 onClick={() => {navigator.clipboard.writeText(output)}} className="output">{output}</h4>
         </div>
         
@@ -46,15 +46,15 @@ function App() {
           }
           {
             showOptions && <div className="options">
-              <Option title="Limit" type="number" onChange={hsetUses} />
-              <Option title="tracking" type="toggle" onChange={hsetTracking} />
+              <Option title="Uses" type="number" onChange={hsetUses} />
+              <Option title="Logging" type="toggle" onChange={hsetTracking} />
 
             </div>
           }         
         </div>
       </form>
       <footer>
-        <p>A Project by <a href="https://github.com/KronsyC" target="_blank" rel="noreferrer">KronsyC</a></p>
+        A Project by <a href="https://github.com/KronsyC" target="_blank" rel="noreferrer">KronsyC</a>
 
       </footer>
     </div>
