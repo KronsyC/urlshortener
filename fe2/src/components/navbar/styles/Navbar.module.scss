@@ -1,0 +1,33 @@
+@import "../../../variables.scss";
+
+.navbar{
+    background-color: $primary;
+    height: $navheight;
+    box-shadow: 0 0 8px black;
+
+    display: flex;
+    justify-content: center;
+
+    .inner{
+        height: 100%;
+        width: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .links{
+            display: flex;
+            height: 100%;
+            align-items: center;
+        }
+
+        .title{
+            height: 100%;
+            display: flex;
+            font-size: 2.7rem;
+            align-items: center;
+            color: rgb(213, 23, 238);
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+    }
+}
