@@ -4,7 +4,7 @@
     background-color: $primary;
     height: $navheight;
     box-shadow: 0 0 8px black;
-
+    width: 100%;
     display: flex;
     justify-content: center;
 
@@ -26,7 +26,9 @@
             display: flex;
             font-size: 2.7rem;
             align-items: center;
-            color: rgb(213, 23, 238);
+            color: transparent;
+            background-image: linear-gradient(to right, rgb(213, 23, 238), rgb(222, 90, 240));
+            -webkit-background-clip: text;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         }
     }

@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes as Switch } from "react-router-d
 import Home from './Home';
 import Dash from './Dash';
 import  { Navbar, Navbarlink } from "./components/navbar"
-
+import Footer from "./components/footer"
 import "./styles/globals.scss"
 
 ReactDOM.render(
@@ -20,7 +20,7 @@ ReactDOM.render(
       <Route path="/" element={< Home />} />
       <Route path="/dash" element={< Dash />} />
     </Switch>
-
+    < Footer />
   </Router>
 
   </React.StrictMode>,

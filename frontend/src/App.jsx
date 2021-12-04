@@ -14,7 +14,7 @@ function App() {
     axios.post("/api/links", { maxUses:uses, tracking,url }, { withCredentials: true })
     .then( data => {
       console.log(data);
-      setOutput( `https://teenie.ml/${data.data.url}` )
+      setOutput( `https://${window.location.host}/${data.data.url}` )
     } )
   }
   const hsetTracking = e => {

@@ -10,10 +10,15 @@
 html{
     background-color: $primary;
     height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     overflow-y: hidden;
 }
 body{
+    position:fixed;
     height: 100%;
+    width: 100%;
 }
 #root{
     height: 100%;

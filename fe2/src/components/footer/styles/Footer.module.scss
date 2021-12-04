@@ -1,0 +1,15 @@
+@import "../../../variables.scss";
+
+.container{
+    height: $footheight;
+    width: 100%;
+    background-color: $secondary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+    h6{
+
+    }
+}

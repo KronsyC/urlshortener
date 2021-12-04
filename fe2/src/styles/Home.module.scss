@@ -1,7 +1,7 @@
 @import "../variables.scss";
 
 .page{
-    height: calc(100% - $navheight);
+    height: calc(100% - $navheight - $footheight);
     max-height: calc(100% - $navheight);
 
     display: flex;
