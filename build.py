@@ -1,4 +1,4 @@
 import os
 
-os.system("del backend/static/* backend/static/.*&&rmdir backend/static")
-os.system("cd ./frontend&&yarn build&&move ./build ../backend/build && cd ../backend && ren build static")
+os.system("del ./static/*&&rmdir backend/static")
+os.system("cd ./frontend&&yarn build&&move ./build ../build&& cd .. && ren build static")
